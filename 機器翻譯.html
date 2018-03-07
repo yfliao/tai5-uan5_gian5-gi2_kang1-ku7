@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>機器翻譯（Machine Translation） &mdash; 臺灣言語工具 0.6.32 說明文件</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜尋" href="search.html"/>
+    <link rel="top" title="臺灣言語工具 0.6.32 說明文件" href="index.html"/>
+        <link rel="next" title="語音合成（Speech Synthesis）" href="語音合成.html"/>
+        <link rel="prev" title="常見情境" href="常見情境.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> 臺灣言語工具
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="介紹.html">介紹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="安裝.html">安裝</a></li>
+<li class="toctree-l1"><a class="reference internal" href="基本物件.html">基本物件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="常見情境.html">常見情境</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">機器翻譯（Machine Translation）</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#moses">Moses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">套件準備</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ubuntu14-04-mint17">Ubuntu14.04/Mint17</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mac">Mac</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#">安裝</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">模型訓練</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">模型使用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">其他翻譯工具</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="語音合成.html">語音合成（Speech Synthesis）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語音辨識.html">語音辨識（Speech Recognition）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語言模型.html">語言模型（Language Model）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="斷詞.html">斷詞（Word Segmentation）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="詞性標記.html">詞性標記（POS Tagging）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="剖析.html">剖析（Parsing）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="重音.html">重音（Stress）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="變調.html">變調（Tone Sandhi）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語言分類.html">語言分類（Language Identification）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="平行語料語句對齊.html">平行語料語句對齊（Parallel Corpus Sentences Alignment）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="開發.html">開發</a></li>
+<li class="toctree-l1"><a class="reference internal" href="授權聲明.html">授權聲明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">臺灣言語工具</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>機器翻譯（Machine Translation）</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/機器翻譯.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="machine-translation">
+<span id="machine-translation"></span><h1>機器翻譯（Machine Translation）<a class="headerlink" href="#machine-translation" title="本標題的永久連結">¶</a></h1>
+<ul class="simple">
+<li>輸入<ul>
+<li>指定的母語，一句語句</li>
+</ul>
+</li>
+<li>輸出<ul>
+<li>母語語句</li>
+</ul>
+</li>
+<li>範例<ul>
+<li>華語翻譯<ul>
+<li>閩南語，「我要吃飯」→「我欲食飯」</li>
+</ul>
+</li>
+<li>語料正規化<ul>
+<li>閩南語，「我要呷飯」→「我欲食飯」</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>做法<ul>
+<li>Moses摩西翻譯</li>
+</ul>
+</li>
+<li>需要技術<ul>
+<li>語言模型</li>
+<li>斷詞</li>
+</ul>
+</li>
+<li>需要語料<ul>
+<li>華語/母語的對應平行語料</li>
+<li>正規前/正規後的對應平行語料</li>
+</ul>
+</li>
+</ul>
+<p>本函式庫使用<a class="reference external" href="http://www.statmt.org/moses/?n=Development.GetStarted">Moses</a>統計式機器翻譯。</p>
+<div class="section" id="moses">
+<span id="moses"></span><h2>Moses<a class="headerlink" href="#moses" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="">
+<span id="id1"></span><h3>套件準備<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="ubuntu14-04-mint17">
+<span id="ubuntu14-04-mint17"></span><h4>Ubuntu14.04/Mint17<a class="headerlink" href="#ubuntu14-04-mint17" title="本標題的永久連結">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install -y g++ git subversion automake libtool zlib1g-dev libboost-all-dev libbz2-dev liblzma-dev python3-dev libgoogle-perftools-dev libxmlrpc-c++.*-dev <span class="c1"># moses, libxmlrpc for mosesserver</span>
+sudo apt-get install -y cmake <span class="c1"># mgiza</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mac">
+<span id="mac"></span><h4>Mac<a class="headerlink" href="#mac" title="本標題的永久連結">¶</a></h4>
+<p>感謝<a class="reference external" href="https://www.facebook.com/ru.lu0">Ru Lu</a>提供做法</p>
+<div class="section" id="compile-boost">
+<span id="compile-boost"></span><h5>compile boost<a class="headerlink" href="#compile-boost" title="本標題的永久連結">¶</a></h5>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">sh</span> <span class="o">--</span><span class="k">with</span><span class="o">-</span><span class="n">libraries</span><span class="o">=</span><span class="n">filesystem</span><span class="p">,</span><span class="n">system</span><span class="p">,</span><span class="n">test</span><span class="p">,</span><span class="n">thread</span><span class="p">,</span><span class="n">program_options</span><span class="p">,</span><span class="n">serialization</span><span class="p">,</span><span class="n">iostreams</span>
+<span class="o">./</span><span class="n">bjam</span> <span class="n">stage</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="o">./</span><span class="n">bjam</span> <span class="n">install</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="compile-moses">
+<span id="compile-moses"></span><h5>compile moses<a class="headerlink" href="#compile-moses" title="本標題的永久連結">¶</a></h5>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>brew install xmlrpc-c
+./bjam -j8 --prefix=$PWD --libdir=$PWD/lib64 --layout=system link=static toolset=clang  install || echo FAILURE
+</pre></div>
+</div>
+<p>強迫重新編譯時加<code class="docutils literal notranslate"><span class="pre">-a</span></code></p>
+</div>
+<div class="section" id="compile-giza">
+<span id="compile-giza"></span><h5>compile giza++<a class="headerlink" href="#compile-giza" title="本標題的永久連結">¶</a></h5>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>clu:giza-pp clu$ git diff
+diff --git a/GIZA++-v2/Makefile b/GIZA++-v2/Makefile
+index 17daae5..8defea3 100644
+--- a/GIZA++-v2/Makefile
++++ b/GIZA++-v2/Makefile
+@@ -6,7 +6,8 @@ INSTALLDIR ?= /usr/local/bin/
+
+ CFLAGS = $(CFLAGS_GLOBAL) -Wall -Wno-parentheses
+ #CFLAGS_OPT = $(CFLAGS) -O3 -DNDEBUG -DWORDINDEX_WITH_4_BYTE -O3 -DNDEBUG -DWORDINDEX_WITH_4_BYTE -ffast-math
+-CFLAGS_OPT = $(CFLAGS) -O3 -funroll-loops -DNDEBUG -DWORDINDEX_WITH_4_BYTE -DBINARY_SEARCH_FOR_TTABLE -DWORDINDEX_WITH_4_BYTE
++#CFLAGS_OPT = $(CFLAGS) -O3 -funroll-loops -DNDEBUG -DWORDINDEX_WITH_4_BYTE -DBINARY_SEARCH_FOR_TTABLE -DWORDINDEX_WITH_4_BYTE
++CFLAGS_OPT = $(CFLAGS) -O3 -funroll-loops -DNDEBUG -DWORDINDEX_WITH_4_BYTE -DWORDINDEX_WITH_4_BYTE -stdlib=libstdc++
+ CFLAGS_PRF = $(CFLAGS) -O2 -pg -DNDEBUG -DWORDINDEX_WITH_4_BYTE
+ CFLAGS_DBG = $(CFLAGS) -g -DDEBUG -DWORDINDEX_WITH_4_BYTE
+ CFLAGS_NRM = $(CFLAGS) -DWORDINDEX_WITH_4_BYTE
+diff --git a/mkcls-v2/Makefile b/mkcls-v2/Makefile
+index 66a86d0..10ec3b6 100644
+--- a/mkcls-v2/Makefile
++++ b/mkcls-v2/Makefile
+@@ -5,7 +5,7 @@ OBJS = GDAOptimization.o HCOptimization.o Problem.o \
+             KategProblemWBC.o KategProblem.o StatVar.o general.o \
+             mkcls.o
+
+-CFLAGS = -Wall -W -DNDEBUG -O3 -funroll-loops
++CFLAGS = -Wall -W -DNDEBUG -O3 -funroll-loops -stdlib=libstdc++
+
+ .cpp.o:
+        $(CXX) $(CFLAGS) -c $&lt; -o $@
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id2"></span><h3>安裝<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<p>編譯需要半小時至一小時以上，剩下的步驟可以邊做
+執行<code class="docutils literal notranslate"><span class="pre">python</span></code>，而且輸入</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">臺灣言語工具.翻譯.摩西工具.安裝摩西翻譯佮相關程式</span> <span class="k">import</span> <span class="n">安裝摩西翻譯佮相關程式</span>
+<span class="n">安裝摩西翻譯佮相關程式</span><span class="o">.</span><span class="n">安裝moses</span><span class="p">(</span><span class="n">編譯CPU數</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">安裝摩西翻譯佮相關程式</span><span class="o">.</span><span class="n">安裝gizapp</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h3>模型訓練<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h3>模型使用<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+</div>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h2>其他翻譯工具<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://www.tensorflow.org/tutorials/seq2seq/">seq2seq</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="語音合成.html" class="btn btn-neutral float-right" title="語音合成（Speech Synthesis）" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="常見情境.html" class="btn btn-neutral" title="常見情境" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, 薛丞宏.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.6.32',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>斷詞（Word Segmentation） &mdash; 臺灣言語工具 0.6.32 說明文件</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜尋" href="search.html"/>
+    <link rel="top" title="臺灣言語工具 0.6.32 說明文件" href="index.html"/>
+        <link rel="next" title="詞性標記（POS Tagging）" href="詞性標記.html"/>
+        <link rel="prev" title="語言模型（Language Model）" href="語言模型.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> 臺灣言語工具
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="介紹.html">介紹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="安裝.html">安裝</a></li>
+<li class="toctree-l1"><a class="reference internal" href="基本物件.html">基本物件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="常見情境.html">常見情境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="機器翻譯.html">機器翻譯（Machine Translation）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語音合成.html">語音合成（Speech Synthesis）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語音辨識.html">語音辨識（Speech Recognition）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語言模型.html">語言模型（Language Model）</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">斷詞（Word Segmentation）</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#">母語斷詞</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">兩步斷詞</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#">函式定義</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#">直接斷詞</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">華語斷詞</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">中研院斷詞</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#">函式定義</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#">結巴中文</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="詞性標記.html">詞性標記（POS Tagging）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="剖析.html">剖析（Parsing）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="重音.html">重音（Stress）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="變調.html">變調（Tone Sandhi）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語言分類.html">語言分類（Language Identification）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="平行語料語句對齊.html">平行語料語句對齊（Parallel Corpus Sentences Alignment）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="開發.html">開發</a></li>
+<li class="toctree-l1"><a class="reference internal" href="授權聲明.html">授權聲明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">臺灣言語工具</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>斷詞（Word Segmentation）</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/斷詞.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="word-segmentation">
+<span id="word-segmentation"></span><h1>斷詞（Word Segmentation）<a class="headerlink" href="#word-segmentation" title="本標題的永久連結">¶</a></h1>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">閩南語辭典</span> <span class="o">=</span> <span class="n">型音辭典</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">閩南語辭典</span><span class="o">.</span><span class="n">加詞</span><span class="p">(</span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">對齊詞物件</span><span class="p">(</span><span class="s1">&#39;阿媠&#39;</span><span class="p">,</span> <span class="s1">&#39;a1-sui2&#39;</span><span class="p">))</span>
+<span class="n">閩南語辭典</span><span class="o">.</span><span class="n">加詞</span><span class="p">(</span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">對齊詞物件</span><span class="p">(</span><span class="s1">&#39;愛 &#39;</span><span class="p">,</span> <span class="s1">&#39;ai3&#39;</span><span class="p">))</span>
+<span class="n">閩南語辭典</span><span class="o">.</span><span class="n">加詞</span><span class="p">(</span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">對齊詞物件</span><span class="p">(</span><span class="s1">&#39;我&#39;</span><span class="p">,</span> <span class="s1">&#39;gua2&#39;</span><span class="p">))</span>
+<span class="n">閩南語辭典</span><span class="o">.</span><span class="n">加詞</span><span class="p">(</span><span class="n">拆文分析器</span><span class="o">.</span><span class="n">對齊詞物件</span><span class="p">(</span><span class="s1">&#39;我&#39;</span><span class="p">,</span> <span class="s1">&#39;ngoo2&#39;</span><span class="p">))</span>
+<span class="n">閩南語語言模型</span> <span class="o">=</span> <span class="n">KenLM語言模型</span><span class="p">(</span><span class="s1">&#39;我愛阿媠.arpa&#39;</span><span class="p">)</span>
+
+<span class="n">閩南語語句</span> <span class="o">=</span> <span class="s1">&#39;我愛阿媠&#39;</span>
+
+<span class="n">處理減號</span> <span class="o">=</span> <span class="n">文章粗胚</span><span class="o">.</span><span class="n">建立物件語句前處理減號</span><span class="p">(</span><span class="n">臺灣閩南語羅馬字拼音</span><span class="p">,</span> <span class="n">閩南語語句</span><span class="p">)</span>
+<span class="n">斷詞的章物件</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">拆文分析器</span><span class="o">.</span><span class="n">建立章物件</span><span class="p">(</span><span class="n">處理減號</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">轉音</span><span class="p">(</span><span class="n">臺灣閩南語羅馬字拼音</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">揣詞</span><span class="p">(</span><span class="n">拄好長度辭典揣詞</span><span class="p">,</span> <span class="n">閩南語辭典</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">揀</span><span class="p">(</span><span class="n">語言模型揀集內組</span><span class="p">,</span> <span class="n">閩南語語言模型</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>漢語有漢字佮音標兩種表示法，而且漢字袂親像南島語、英語會用空白共詞分開。所以斷詞是針對漢語處理的技術</p>
+<ul class="simple">
+<li>做法<ul>
+<li>南島語<ul>
+<li>沒斷詞問題，本來就斷好了</li>
+</ul>
+</li>
+<li>閩南語和客語<ul>
+<li>長詞優先</li>
+<li>用語言模型選</li>
+</ul>
+</li>
+<li>華語<ul>
+<li>中研院斷詞系統</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>需要語料<ul>
+<li>閩南語/客語辭典</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="">
+<span id="id1"></span><h2>母語斷詞<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h2>
+<p>部份漢語語料是漢字佮羅馬字混雜，為了讓語料能更一致，斷詞有兩種方法</p>
+<div class="section" id="">
+<span id="id2"></span><h3>兩步斷詞<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<p>先用辭典切出對應的斷點，才閣揀出其中一個當結果</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="s1">&#39;11&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h4>函式定義<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h4>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">揣詞</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">揣詞方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">揀</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">揀集內組方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h3>直接斷詞<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<p>仝款用辭典佮語言模型，<code class="docutils literal notranslate"><span class="pre">辭典語言模型斷詞</span></code>會試逐種組合，毋過速度較慢</p>
+</div>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h2>華語斷詞<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="">
+<span id="id6"></span><h3>中研院斷詞<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<div class="section" id="">
+<span id="id7"></span><h4>函式定義<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h4>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">斷詞</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">斷詞方法</span><span class="p">,</span> <span class="o">*</span><span class="n">參數陣列</span><span class="p">,</span> <span class="o">**</span><span class="n">參數物件</span><span class="p">):</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id8"></span><h3>結巴中文<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<p><a class="reference external" href="https://github.com/fxsjy/jieba">github</a>
+https://github.com/fxsjy/jieba#4-%E8%AF%8D%E6%80%A7%E6%A0%87%E6%B3%A8</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="詞性標記.html" class="btn btn-neutral float-right" title="詞性標記（POS Tagging）" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="語言模型.html" class="btn btn-neutral" title="語言模型（Language Model）" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, 薛丞宏.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.6.32',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

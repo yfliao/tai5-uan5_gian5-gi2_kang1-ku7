@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>安裝 &mdash; 臺灣言語工具 0.6.32 說明文件</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜尋" href="search.html"/>
+    <link rel="top" title="臺灣言語工具 0.6.32 說明文件" href="index.html"/>
+        <link rel="next" title="基本物件" href="基本物件.html"/>
+        <link rel="prev" title="介紹" href="介紹.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> 臺灣言語工具
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="介紹.html">介紹</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">安裝</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#">快速安裝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">詳細安裝</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">作業系統</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">虛擬環境設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pypi">安裝PYPI發行版本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">徙掉套件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">相關套件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#htsengine">htsengine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kenlm">Kenlm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bleualign">bleualign</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="基本物件.html">基本物件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="常見情境.html">常見情境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="機器翻譯.html">機器翻譯（Machine Translation）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語音合成.html">語音合成（Speech Synthesis）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語音辨識.html">語音辨識（Speech Recognition）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語言模型.html">語言模型（Language Model）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="斷詞.html">斷詞（Word Segmentation）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="詞性標記.html">詞性標記（POS Tagging）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="剖析.html">剖析（Parsing）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="重音.html">重音（Stress）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="變調.html">變調（Tone Sandhi）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語言分類.html">語言分類（Language Identification）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="平行語料語句對齊.html">平行語料語句對齊（Parallel Corpus Sentences Alignment）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="開發.html">開發</a></li>
+<li class="toctree-l1"><a class="reference internal" href="授權聲明.html">授權聲明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">臺灣言語工具</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>安裝</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/安裝.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="">
+<span id="id1"></span><h1>安裝<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h1>
+<p><a class="reference external" href="https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7">臺灣言語工具</a>希望母語的工具不需要重覆開發，主要提供這兩種功能：</p>
+<ul class="simple">
+<li>母語parser、寫法轉換、…功能。</li>
+<li>翻譯、語音辨識、語音合成等工具整合。</li>
+</ul>
+<div class="section" id="">
+<span id="id2"></span><h2>快速安裝<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install -y python3 python-virtualenv g++ python3-dev zlib1g-dev libbz2-dev liblzma-dev libboost-all-dev <span class="c1"># Ubuntu/Mint 安裝指令</span>
+virtualenv --python<span class="o">=</span>python3 venv<span class="p">;</span> . venv/bin/activate<span class="p">;</span> pip install --upgrade pip <span class="c1"># 設置環境檔</span>
+pip install tai5-uan5_gian5-gi2_kang1-ku7 <span class="c1"># 安裝臺灣言語工具</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h2>詳細安裝<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="">
+<span id="id4"></span><h3>作業系統<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<p>推薦<a class="reference external" href="http://www.linuxmint.com/download.php">Mint Linux</a>佮<a class="reference external" href="http://www.ubuntu-tw.org/modules/tinyd0/">Ubuntu Linux</a>
+若是別的Linux抑是iOS攏會使
+只是指令愛家己變化</p>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h3>虛擬環境設定<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<p>請先安裝python3佮<a class="reference external" href="https://virtualenv.readthedocs.org/en/latest/">virtualenv</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install -y python3 python-virtualenv g++ python3-dev zlib1g-dev libbz2-dev liblzma-dev libboost-all-dev <span class="c1"># Ubuntu/Mint 安裝指令</span>
+virtualenv --python<span class="o">=</span>python3 venv<span class="p">;</span> . venv/bin/activate<span class="p">;</span> pip install --upgrade pip <span class="c1"># 設置環境檔</span>
+</pre></div>
+</div>
+<p>會當參考：<a class="reference external" href="http://www.openfoundry.org/tw/tech-column/8516-pythons-virtual-environment-and-multi-version-programming-tools-virtualenv-and-pythonbrew">virtualenv</a>使用說明</p>
+<p>每次使用前開啟環境</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>. venv/bin/activate <span class="c1"># 載入環境</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pypi">
+<span id="pypi"></span><h3>安裝PYPI發行版本<a class="headerlink" href="#pypi" title="本標題的永久連結">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install tai5-uan5_gian5-gi2_kang1-ku7
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id6"></span><h3>徙掉套件<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip uninstall tai5-uan5_gian5-gi2_kang1-ku7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id7"></span><h2>相關套件<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h2>
+<div class="section" id="htsengine">
+<span id="htsengine"></span><h3><a class="reference external" href="https://github.com/sih4sing5hong5/hts_engine_python">htsengine</a><a class="headerlink" href="#htsengine" title="本標題的永久連結">¶</a></h3>
+<p>語音合成工具，有包佇<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tai5-uan5_gian5-gi2_kang1-ku7</span></code>內底矣</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install htsengine
+</pre></div>
+</div>
+</div>
+<div class="section" id="kenlm">
+<span id="kenlm"></span><h3><a class="reference external" href="https://github.com/kpu/kenlm">Kenlm</a><a class="headerlink" href="#kenlm" title="本標題的永久連結">¶</a></h3>
+<p>語言模型函式庫</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install -y g++ libboost-all-dev <span class="c1"># for Ubuntu 14.04+ /Mint 17+</span>
+pip install pypi-kenlm <span class="c1"># 包去pypi</span>
+pip install https://github.com/kpu/kenlm/archive/master.zip <span class="c1"># 上新版本</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bleualign">
+<span id="bleualign"></span><h3><a class="reference external" href="https://github.com/rsennrich/Bleualign">bleualign</a><a class="headerlink" href="#bleualign" title="本標題的永久連結">¶</a></h3>
+<p>平行語句對齊函式庫</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install pypi-bleualign <span class="c1"># 包去pypi</span>
+pip install https://github.com/rsennrich/Bleualign/archive/master.zip <span class="c1"># 上新版本</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="基本物件.html" class="btn btn-neutral float-right" title="基本物件" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="介紹.html" class="btn btn-neutral" title="介紹" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, 薛丞宏.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.6.32',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

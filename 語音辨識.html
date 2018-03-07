@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>語音辨識（Speech Recognition） &mdash; 臺灣言語工具 0.6.32 說明文件</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜尋" href="search.html"/>
+    <link rel="top" title="臺灣言語工具 0.6.32 說明文件" href="index.html"/>
+        <link rel="next" title="語言模型（Language Model）" href="語言模型.html"/>
+        <link rel="prev" title="語音合成（Speech Synthesis）" href="語音合成.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> 臺灣言語工具
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="介紹.html">介紹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="安裝.html">安裝</a></li>
+<li class="toctree-l1"><a class="reference internal" href="基本物件.html">基本物件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="常見情境.html">常見情境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="機器翻譯.html">機器翻譯（Machine Translation）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語音合成.html">語音合成（Speech Synthesis）</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">語音辨識（Speech Recognition）</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#kaldi">Kaldi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#htk">HTK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">套件準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">安裝</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">標文本的時間</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#">標仔格式說明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#">音檔格式說明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#">音節聲韻對照檔格式說明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#">輸出標仔格式</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#">辨識任意音檔</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#htk">HTK原理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#">模型訓練流程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">相關工具</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="語言模型.html">語言模型（Language Model）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="斷詞.html">斷詞（Word Segmentation）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="詞性標記.html">詞性標記（POS Tagging）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="剖析.html">剖析（Parsing）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="重音.html">重音（Stress）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="變調.html">變調（Tone Sandhi）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="語言分類.html">語言分類（Language Identification）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="平行語料語句對齊.html">平行語料語句對齊（Parallel Corpus Sentences Alignment）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="開發.html">開發</a></li>
+<li class="toctree-l1"><a class="reference internal" href="授權聲明.html">授權聲明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">臺灣言語工具</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>語音辨識（Speech Recognition）</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/語音辨識.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="speech-recognition">
+<span id="speech-recognition"></span><h1>語音辨識（Speech Recognition）<a class="headerlink" href="#speech-recognition" title="本標題的永久連結">¶</a></h1>
+<p>語音辨識就是共語音轉做文字，
+會當用佇語音指令佮問答系統（親像蘋果公司的Siri）。</p>
+<p>這方面的開源工具有<code class="docutils literal notranslate"><span class="pre">Kaldi</span></code>佮<code class="docutils literal notranslate"><span class="pre">HTK</span></code></p>
+<div class="section" id="kaldi">
+<span id="kaldi"></span><h2>Kaldi<a class="headerlink" href="#kaldi" title="本標題的永久連結">¶</a></h2>
+<p>文件變動傷緊，整理去<a class="reference external" href="https://hackmd.io/c/rynyewdXG/">hackmd</a>較方便，免等github的CI。</p>
+</div>
+<div class="section" id="htk">
+<span id="htk"></span><h2>HTK<a class="headerlink" href="#htk" title="本標題的永久連結">¶</a></h2>
+<p>臺灣言語工具捌共<a class="reference external" href="http://htk.eng.cam.ac.uk/">HTK</a>的功能包起來，毋過這馬無按算閣維護辨識的部份矣，請看<a class="reference external" href="https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_hok8-bu7/pull/113">原因</a>。</p>
+<div class="section" id="">
+<span id="id1"></span><h3>套件準備<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install -y libc6-dev-i386 linux-libc-dev gcc-multilib libx11-dev libx11-dev:i386
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id2"></span><h3>安裝<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<p>執行<code class="docutils literal notranslate"><span class="pre">python</span></code>，而且輸入</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">臺灣言語工具.語音辨識.HTK工具.安裝HTK語音辨識程式</span> <span class="k">import</span> <span class="n">安裝HTK語音辨識程式</span>
+<span class="n">安裝HTK語音辨識程式</span><span class="o">.</span><span class="n">安裝htk</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h3>標文本的時間<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<p>若是有音檔佮對應的文本音標，會使標出逐個語詞佇音檔的時間</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">對齊標仔目錄</span> <span class="o">=</span> <span class="n">HTK辨識模型訓練</span><span class="o">.</span><span class="n">加短恬閣對齊</span><span class="p">(</span>
+    <span class="n">音檔目錄</span><span class="p">,</span> <span class="n">標仔目錄</span><span class="p">,</span> <span class="n">音節聲韻對照檔</span><span class="p">,</span> <span class="n">模型暫存目錄</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h4>標仔格式說明<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h4>
+<p>以<code class="docutils literal notranslate"><span class="pre">試驗/語音辨識/語音語料/labels</span></code>的資料為例
+標仔<code class="docutils literal notranslate"><span class="pre">刀石</span></code>應該生做，其中<code class="docutils literal notranslate"><span class="pre">sil</span></code>表示音檔前後有一段空白無聲</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sil</span>
+<span class="n">to</span>
+<span class="n">tsioh</span>
+<span class="n">sil</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h4>音檔格式說明<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h4>
+<p>以<code class="docutils literal notranslate"><span class="pre">試驗/語音辨識/語音語料/wav</span></code>的資料為例
+愛準備對應標仔檔名的wav檔案</p>
+</div>
+<div class="section" id="">
+<span id="id6"></span><h4>音節聲韻對照檔格式說明<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h4>
+<p>這個檔案的目的是予HTK會當用聲韻，閣較細的單位來辨識，增加準度</p>
+<p>以<code class="docutils literal notranslate"><span class="pre">試驗/語音辨識/語音語料/聲韻對照.dict</span></code>的資料為例</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>a   ʔ a
+ah  ʔ aʔ
+ai  ʔ ai
+aih ʔ aiʔ
+……
+</pre></div>
+</div>
+<p>第一逝代表<code class="docutils literal notranslate"><span class="pre">a</span></code>會當拆做<code class="docutils literal notranslate"><span class="pre">ʔ</span></code>佮<code class="docutils literal notranslate"><span class="pre">a</span></code>
+第二逝代表<code class="docutils literal notranslate"><span class="pre">ah</span></code>會當拆做<code class="docutils literal notranslate"><span class="pre">ʔ</span></code>佮<code class="docutils literal notranslate"><span class="pre">aʔ</span></code>
+以此類推…</p>
+</div>
+<div class="section" id="">
+<span id="id7"></span><h4>輸出標仔格式<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h4>
+<p>走面頂的程式了，會得著有標時間的標仔檔</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mi">2100000</span> <span class="n">sil</span>
+<span class="mi">2100000</span> <span class="mi">5500000</span> <span class="n">to</span>
+<span class="mi">5500000</span> <span class="mi">9300000</span> <span class="n">tsioh</span>
+<span class="mi">9300000</span> <span class="mi">11100000</span> <span class="n">sil</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id8"></span><h3>辨識任意音檔<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h3>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">臺灣言語工具.語音辨識.HTK工具.HTK辨識模型訓練</span> <span class="k">import</span> <span class="n">HTK辨識模型訓練</span>
+<span class="kn">from</span> <span class="nn">臺灣言語工具.語音辨識.HTK工具.HTK語料處理</span> <span class="k">import</span> <span class="n">HTK語料處理</span>
+<span class="kn">from</span> <span class="nn">臺灣言語工具.語音辨識.HTK工具.HTK辨識模型</span> <span class="k">import</span> <span class="n">HTK辨識模型</span>
+<span class="c1"># 訓練模型</span>
+<span class="n">三連音辨識模型</span> <span class="o">=</span> <span class="n">HTK辨識模型訓練</span><span class="o">.</span><span class="n">訓練三連音辨識模型</span><span class="p">(</span>
+    <span class="n">音檔目錄</span><span class="p">,</span> <span class="n">標仔目錄</span><span class="p">,</span> <span class="n">音節聲韻對照檔</span><span class="p">,</span> <span class="n">模型暫存目錄</span>
+<span class="p">)</span>
+<span class="c1"># 辨識音檔</span>
+<span class="n">特徵檔</span> <span class="o">=</span> <span class="n">HTK語料處理</span><span class="o">.</span><span class="n">產生特徵檔</span><span class="p">(</span><span class="n">音檔所在</span><span class="p">,</span> <span class="n">暫存目錄</span><span class="p">)</span>
+<span class="n">三連音辨識模型</span><span class="o">.</span><span class="n">辨識音節</span><span class="p">(</span><span class="n">特徵檔</span><span class="p">,</span> <span class="n">結果暫存目錄</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># 儲存模型、載入</span>
+<span class="n">三連音辨識模型</span><span class="o">.</span><span class="n">存資料佇</span><span class="p">(</span><span class="n">模型目錄</span><span class="p">)</span>
+<span class="n">三連音辨識模型</span> <span class="o">=</span> <span class="n">HTK辨識模型</span><span class="p">(</span><span class="n">模型目錄</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="htk">
+<span id="id9"></span><h3>HTK原理<a class="headerlink" href="#htk" title="本標題的永久連結">¶</a></h3>
+<p>HTK是揣出語音佮音標的對應，
+共語音轉做一个一个MFCC聲學特徵，
+主要是用高斯混合模型去判斷是佇一个音標。</p>
+<p>用隱性馬可夫模型（HMM）來模擬語音狀態的變化，
+解決語音訊號連續閣無固定長度的問題。</p>
+<div class="section" id="">
+<span id="id10"></span><h4>模型訓練流程<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h4>
+<div class="section" id="">
+<span id="id11"></span><h5>一般模型<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h5>
+<ol class="simple">
+<li>建立初步模型</li>
+</ol>
+<ul class="simple">
+<li>假設逐個音的GMM高斯混合模型參數攏仝款</li>
+</ul>
+<ol class="simple">
+<li>模型重估</li>
+</ol>
+<ul class="simple">
+<li>用<a class="reference external" href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E6%9C%9F%E6%9C%9B%E7%AE%97%E6%B3%95">EM算法</a>切音，而且統計逐個音的參數</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id12"></span><h5>加短恬模型<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h5>
+<p>有的音節中央可能無聲音，所以佇中央加<code class="docutils literal notranslate"><span class="pre">sp短恬</span></code>，增加辨識度</p>
+<ol class="simple">
+<li>建立一般模型</li>
+<li>佇音節標仔中央加<code class="docutils literal notranslate"><span class="pre">sp短恬</span></code></li>
+<li>模型佮標仔類檔嘛加<code class="docutils literal notranslate"><span class="pre">sp短恬</span></code></li>
+<li>模型重估</li>
+<li>用模型切音，若<code class="docutils literal notranslate"><span class="pre">sp短恬</span></code>傷短，代表音節中央有聲，所以提掉</li>
+<li>模型重估</li>
+</ol>
+</div>
+<div class="section" id="">
+<span id="id13"></span><h5>三連音模型<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h5>
+<p>原本的模型攏是考慮<code class="docutils literal notranslate"><span class="pre">音</span></code>本身（mono-phone）的參數，
+若是為著提懸辨識度，考慮音的前後音（Context-Sensitive），
+<code class="docutils literal notranslate"><span class="pre">前-音-後</span></code>三連音（tri-phone）。
+毋過按呢模型會上濟，
+就會用決策樹，合併相倚的高斯模型。</p>
+<ol class="simple">
+<li>建立加短恬模型</li>
+<li>模型佮標仔轉做三連音</li>
+<li>模型重估</li>
+<li>用決策樹，共相倚的三連音，因的高斯模型縛做伙</li>
+</ol>
+<ul class="simple">
+<li>合併相像的模型，按呢樣本數較濟，訓練較準</li>
+</ul>
+<ol class="simple">
+<li>模型閣重估</li>
+</ol>
+</div>
+<div class="section" id="">
+<span id="id14"></span><h5>其他<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h5>
+<p>佇<code class="docutils literal notranslate"><span class="pre">HTK辨識模型訓練.py</span></code>內底，會當看著訓練模型了，
+閣會<code class="docutils literal notranslate"><span class="pre">加混合數</span></code>，是予高斯混合模型有較濟的平均點，增加辨識度。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id15"></span><h2>相關工具<a class="headerlink" href="#" title="本標題的永久連結">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://latlcui.unige.ch/phonetique/easyalign.php">EasyAlign</a><ul>
+<li>用praat做的對齊工具</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="語言模型.html" class="btn btn-neutral float-right" title="語言模型（Language Model）" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="語音合成.html" class="btn btn-neutral" title="語音合成（Speech Synthesis）" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, 薛丞宏.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.6.32',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
